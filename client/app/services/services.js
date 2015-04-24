@@ -17,6 +17,8 @@ angular.module('shortly.services', [])
 })
 .factory('ShortenLinks', function ($http) {
   var addLink = function(link){
+    console.log("LINK SUBMITTED IS:",link);
+    //link=JSON.stringify(link);
     return $http({
       method: 'POST',
       url: '/api/links',

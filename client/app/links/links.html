@@ -1,37 +1,27 @@
-<div id='container' ng-init="myLinks=$scope.getLinks()">
-  <!-- Your html here -->
-  <ul>
-    <li><a href='#' class='index'>All Links</a></li>
-    <input ng-model="newTest">
-    <button ng-click="testArray.push(newTest);">Add</button>
-    <!-- {{ getLinks }} -->
-    <!-- fetch the link data,
-    then append the link data in some sort of ng-repeat
-    type way -->
-  </ul>
+<div id='container'>
+  <nav class="navigation">
+    <ul>
+      <li>
+          <a class="selected" href="#/links">Links</a>
+      </li>
+       <li>
+          <a href="#/shorten">Shorten</a>
+      </li>
+    </ul>
+  </nav>
 </div>
-  <!--
-  <script src="app/links/links.js"></script>
-  <!DOCTYPE html>
-<html ng-app='shortly'>
-  <head>
-    <meta charset="utf-8" />
-    <title>Shortly</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  </head>
-  <body>
-    <h1>Shortly</h1>
- -->
-    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
- <!--    <div ng-view></div>
-
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="app/auth/auth.js"></script>
-    <script src="app/links/links.js"></script>
-    <script src="app/shorten/shorten.js"></script>
-    <script src="app/services/services.js"></script>
-    <script src="app/app.js"></script>
-  </body>
-</html>
- -->
+<input type='text' ng-model='search' placeholder='filter' />
+<div class="links">
+  <div class="link"
+      ng-repeat="link in data.links | filter:search | orderBy:'-visits'">
+    <img src="assets/redirect_icon.png">
+    <div class="info">
+      <div class="visits">
+        <span class="count">{{ link.visits }}</span>Visits
+      </div>
+      <div class="title">{{ link.title }}</div>
+      <div class="original">{{ link.url }}</div>
+      <a href="http://localhost:8000/api/links/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</a>
+    </div>
+  </div>
+</div>
