@@ -24,11 +24,8 @@ angular.module('shortly.services', [])
       url: '/api/links',
       data: link
     })
-    .then(function (resp) {
-      return resp.link;
-      // resp send 201?
-    });
   }
+
   return {
     addLink:addLink
   };
